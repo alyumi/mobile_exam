@@ -2,17 +2,52 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:io';
 
 // import 'mpu_API.dart';
 
 // import 'news.dart';
 
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
+
+
+class httpParse{
+  
+  String? htmlToParse;
+
+
+  void _getresponse() async{
+    var response = await http.get(Uri.parse("https://new.mospolytech.ru/news/"));
+    if(response.statusCode == 200){
+      htmlToParse = response.body;
+    }
+  }
+
+  void _getHtml(){
+    _getresponse();
+    if (htmlToParse != null){
+      print(htmlToParse);
+    }
+  }
+}
+
+
+
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +71,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isBlock = false;
+
+  httpParse html = new httpParse();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    print(html);
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -162,21 +209,6 @@ class horizNews extends StatefulWidget {
 
 class _horizNewsState extends State<horizNews> {
   
-  void _getresponse() async{
-    var response = await http.get(Uri.parse("https://new.mospolytech.ru/news/"));
-    if(response.statusCode == 200){
-      String htmlToParse = response.body;
-      print(htmlToParse);
-    }
-  }
-  
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    _getresponse();
-  }
 
 
   @override
