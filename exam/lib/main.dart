@@ -187,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onTap: () async {
                   await launch(
-                      'https://docs.flutter.io/flutter/services/UrlLauncher-class.html');
+                      'https://github.com/alyumi/mobile_exam');
                 },
               ),
             ),
@@ -214,7 +214,7 @@ class _horizNewsState extends State<horizNews> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 100,
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -222,6 +222,12 @@ class _horizNewsState extends State<horizNews> {
           fit: BoxFit.fitHeight,
           alignment: Alignment.centerRight,
         ),
+        border: Border(
+          top: BorderSide(width: 1.0, color: Colors.purple),
+          left: BorderSide(width: 1.0, color: Colors.purple),
+          right: BorderSide(width: 1.0, color: Colors.purple),
+          bottom: BorderSide(width: 1.0, color: Colors.purple),
+        )
       ),
       child: Column(
         children: [
