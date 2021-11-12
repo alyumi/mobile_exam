@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Exam',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomePage(),
@@ -147,7 +147,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.purple,
               ),
               child: Padding(
                 padding: EdgeInsetsDirectional.only(top: 35),
@@ -220,16 +220,15 @@ class _horizNewsState extends State<horizNews> {
         image: DecorationImage(
           image: AssetImage('logo.jpg'),
           fit: BoxFit.fitHeight,
-          alignment: Alignment.centerLeft,
+          alignment: Alignment.centerRight,
         ),
       ),
-      child: const ListTile(
-        leading: 
-          Text(
-            'News 1',
-            textAlign: TextAlign.right,
-          ),
-      )
+      child: Column(
+        children: [
+          Text('NAME'),
+          Text('Content'),
+        ],
+      ),
     );
   }
 }
